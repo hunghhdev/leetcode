@@ -1,7 +1,5 @@
 package dev.hunghh.leetcode.p00013;
 
-import java.util.Map;
-
 /**
  * LeetCode #13 - Roman to Integer
  * leetcode.com/problems/roman-to-integer/
@@ -38,26 +36,29 @@ import java.util.Map;
  */
 public class Solution {
 
-    public int romanToInt(String roman) {
-        Map<Character, Integer> romanValues = Map.of(
-                'I', 1,
-                'V', 5,
-                'X', 10,
-                'L', 50,
-                'C', 100,
-                'D', 500,
-                'M', 1000);
-        int length = roman.length();
-        int result = 0;
-        for (int i = 0; i < length; i++) {
-            int currentValue = romanValues.get(roman.charAt(i));
-            if (i < length - 1 && currentValue < romanValues.get(roman.charAt(i + 1))) {
-                result -= currentValue;
-                continue;
-            }
-            result += currentValue;
-        }
+    private static final int[] VALUES = new int[128];
+    static {
+        VALUES['I'] = 1;
+        VALUES['V'] = 5;
+        VALUES['X'] = 10;
+        VALUES['L'] = 50;
+        VALUES['C'] = 100;
+        VALUES['D'] = 500;
+        VALUES['M'] = 1000;
+    }
 
+    public int romanToInt(String s) {
+        int result = 0;
+        int prevValue = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currentValue = VALUES[s.charAt(i)];
+            if (currentValue < prevValue) {
+                result -= currentValue;
+            } else {
+                result += currentValue;
+            }
+            prevValue = currentValue;
+        }
         return result;
     }
 
