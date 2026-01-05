@@ -9,12 +9,6 @@ package dev.hunghh.leetcode.p00026;
  * duplicates in-place such that each unique element appears only once. The
  * relative order of the elements should be kept the same.
  *
- * Since the array is sorted, we can use a two-pointer approach to remove
- * duplicates in-place.
- *
- * Time Complexity: O(n)
- *
- * Space Complexity: O(1)
  */
 public class Solution {
 
